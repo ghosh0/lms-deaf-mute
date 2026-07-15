@@ -1,0 +1,131 @@
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Instrument+Serif&family=JetBrains+Mono:wght@400;500&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --color-background: hsl(40 33% 97%);
+  --color-foreground: hsl(32 30% 19%);
+
+  --color-card: hsl(39 35% 96%);
+  --color-card-foreground: hsl(32 30% 19%);
+
+  --color-popover: hsl(39 35% 96%);
+  --color-popover-foreground: hsl(32 30% 19%);
+
+  --color-primary: hsl(27 76% 51%);
+  --color-primary-foreground: hsl(0 0% 100%);
+
+  --color-secondary: hsl(40 40% 92%);
+  --color-secondary-foreground: hsl(35 33% 30%);
+
+  --color-muted: hsl(39 30% 93%);
+  --color-muted-foreground: hsl(33 30% 47%);
+
+  --color-accent: hsl(40 40% 92%);
+  --color-accent-foreground: hsl(35 33% 30%);
+
+  --color-destructive: hsl(12 70% 50%);
+  --color-destructive-foreground: hsl(0 0% 98%);
+
+  --color-border: hsl(36 33% 88%);
+  --color-input: hsl(36 33% 88%);
+  --color-ring: hsl(27 76% 51%);
+
+  --color-chart-1: hsl(27 76% 51%);
+  --color-chart-2: hsl(158 45% 51%);
+  --color-chart-3: hsl(220 50% 55%);
+  --color-chart-4: hsl(12 65% 53%);
+  --color-chart-5: hsl(280 40% 55%);
+
+  --radius: 0.5rem;
+
+  --font-sans: "Manrope", ui-sans-serif, sans-serif;
+  --font-serif: "Instrument Serif", ui-serif, serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+}
+
+html,
+body {
+  background: var(--color-background);
+  color: var(--color-foreground);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.font-serif {
+  font-family: var(--font-serif);
+}
+
+.font-mono {
+  font-family: var(--font-mono);
+}
+
+/* Subtle scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-border);
+  border-radius: 9999px;
+  border: 2px solid transparent;
+  background-clip: padding-box;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: color-mix(in srgb, var(--color-muted-foreground) 50%, transparent);
+  background-clip: padding-box;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fade-in-up 0.6s ease-out both;
+}
+
+@keyframes pulse-ring {
+  0% {
+    box-shadow: 0 0 0 0 color-mix(in srgb, var(--color-primary) 40%, transparent);
+  }
+
+  70% {
+    box-shadow: 0 0 0 12px transparent;
+  }
+
+  100% {
+    box-shadow: 0 0 0 0 transparent;
+  }
+}
+
+.animate-pulse-ring {
+  animation: pulse-ring 2s infinite;
+}
