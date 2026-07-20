@@ -1,0 +1,16 @@
+Loaded Prisma config from prisma.config.ts.
+
+Prisma config detected, skipping environment variable loading.
+Prisma schema loaded from prisma\schema.prisma
+Datasource "db": PostgreSQL database "neondb", schema "public" at "ep-shiny-star-ao2wl7rt-pooler.c-2.ap-southeast-1.aws.neon.tech"
+
+The database is already in sync with the Prisma schema.
+
+Running generate... (Use --skip-generate to skip the generators)
+[2K[1A[2K[GRunning generate... - Prisma Client
+[2K[1A[2K[GEPERM: operation not permitted, rename 
+'C:\Users\Rajdip\Downloads\project-bolt-sb1-qqwwe9og\backend\node_modules\.prism
+a\client\query_engine-windows.dll.node.tmp18304' -> 
+'C:\Users\Rajdip\Downloads\project-bolt-sb1-qqwwe9og\backend\node_modules\.prism
+a\client\query_engine-windows.dll.node'
+
