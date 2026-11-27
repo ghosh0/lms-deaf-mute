@@ -267,7 +267,11 @@ export default function PracticePage() {
         form.append('file', blob, 'frame.jpg');
 
         try {
-          const { data } = await axios.post('http://localhost:8000/predict', form, {
+          const apiBase =
+            import.meta.env.VITE_ML_API_URL ??
+            import.meta.env.VITE_API_URL ??
+            'http://localhost:5000';
+          const { data } = await axios.post(`${apiBase}/api/predict`, form, {
             headers: { 'Content-Type': 'multipart/form-data' },
           });
 

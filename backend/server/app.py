@@ -1,3 +1,4 @@
+import os
 from fastapi import FastAPI, UploadFile, File
 from fastapi.middleware.cors import CORSMiddleware
 
@@ -5,11 +6,15 @@ from asl import recognize_frame
 
 app = FastAPI()
 
+frontend_origins = [
+    origin.strip()
+    for origin in os.getenv("FRONTEND_URL", "http://localhost:5173").split(",")
+    if origin.strip()
+]
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[
-        "http://localhost:5173",
-    ],
+    allow_origins=frontend_origins,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],

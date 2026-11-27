@@ -168,9 +168,14 @@ const lastCaptureTime = useRef(0);
 
             try{
 
+                const apiBase =
+                    import.meta.env.VITE_ML_API_URL ??
+                    import.meta.env.VITE_API_URL ??
+                    "http://localhost:5000";
+
                 const { data } = await axios.post(
 
-                    "http://localhost:8000/predict",
+                    `${apiBase}/api/predict`,
 
                     form,
 
