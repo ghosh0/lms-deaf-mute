@@ -12,8 +12,8 @@ import {
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { toast } from 'sonner';
-import axios from 'axios';
 import { AslSign } from '@/components/dictionary/asl-sign';
+import { recognizeVideoFrame } from '@/lib/asl-recognizer';
 import { cn } from '@/lib/utils';
 
 // Alphabet practice list with corresponding emojis and words
@@ -249,43 +249,15 @@ export default function PracticePage() {
   const predictFrame = useCallback(async () => {
     if (!videoRef.current || !canvasRef.current) return;
 
-    const video = videoRef.current;
-    if (video.videoWidth === 0) return;
-
-    const canvas = canvasRef.current;
-    canvas.width = video.videoWidth;
-    canvas.height = video.videoHeight;
-    const ctx = canvas.getContext('2d');
-    if (!ctx) return;
-
-    ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
-
-    canvas.toBlob(
-      async (blob) => {
-        if (!blob) return;
-        const form = new FormData();
-        form.append('file', blob, 'frame.jpg');
-
-        try {
-          const apiBase =
-            import.meta.env.VITE_ML_API_URL ??
-            import.meta.env.VITE_API_URL ??
-            'http://localhost:5000';
-          const { data } = await axios.post(`${apiBase}/api/predict`, form, {
-            headers: { 'Content-Type': 'multipart/form-data' },
-          });
-
-          if (data.success) {
-            setCurrentSign(data.letter || null);
-          }
-        } catch (err) {
-          // Silent catch to prevent console flooding on offline/local prediction errors
-          console.debug('Prediction error:', err);
-        }
-      },
-      'image/jpeg',
-      0.9
-    );
+    try {
+      const data = await recognizeVideoFrame(videoRef.current, canvasRef.current);
+      if (data.success) {
+        setCurrentSign(data.letter || null);
+      }
+    } catch (err) {
+      // Silent catch to prevent console flooding on prediction errors
+      console.debug('Prediction error:', err);
+    }
   }, []);
 
   useEffect(() => {
