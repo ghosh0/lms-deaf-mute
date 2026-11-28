@@ -8,7 +8,9 @@ import { GoogleButton } from '@/components/auth/google-button';
 import { useAuth } from '@/context/auth-context';
 import { toast } from 'sonner';
 
-const API_BASE = import.meta.env.VITE_API_URL ?? 'http://localhost:5000';
+const API_BASE = (
+  import.meta.env.VITE_API_URL || 'https://lms-deaf-mute.onrender.com'
+).replace(/\/$/, '');
 
 async function readJsonError(response: Response) {
   try {

@@ -30,7 +30,9 @@ import type { Course, Lesson, Quiz, StudyMaterial, QuizQuestion } from '@/data/c
 type Tab = 'overview' | 'courses' | 'quizzes' | 'dictionary';
 
 const ALPHABET = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
-const API_BASE = import.meta.env.VITE_API_URL ?? 'http://localhost:5000';
+const API_BASE = (
+  import.meta.env.VITE_API_URL || 'https://lms-deaf-mute.onrender.com'
+).replace(/\/$/, '');
 
 async function readJsonError(response: Response) {
   try {

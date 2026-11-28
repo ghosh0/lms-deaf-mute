@@ -303,7 +303,9 @@ export function getQuizByCourse(courseId: string): Quiz | undefined {
   return quizzes.find((q) => q.courseId === courseId);
 }
 
-const API_BASE = import.meta.env.VITE_API_URL ?? 'http://localhost:5000';
+const API_BASE = (
+  import.meta.env.VITE_API_URL || 'https://lms-deaf-mute.onrender.com'
+).replace(/\/$/, '');
 
 async function loadCatalog(): Promise<{ courses: Course[]; quizzes: Quiz[] }> {
   try {
